@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scoop Stock - Login</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="login-page">
+  <div class="login-card">
+    <h1>🍦 Scoop Stock</h1>
+    <p class="muted">Ice cream parlour inventory</p>
+    <form id="login-form">
+      <label for="name-input">Your name</label>
+      <input type="text" id="name-input" placeholder="e.g. Viraj" required>
+
+      <label for="role-select">Role</label>
+      <select id="role-select">
+        <option value="Admin">Admin (Owner / Manager)</option>
+        <option value="Staff">Staff (Counter)</option>
+      </select>
+
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+  </div>
+
+  <script src="js/dataService.js"></script>
+  <script>
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name-input').value.trim();
+      const role = document.getElementById('role-select').value;
+      await DataService.login({ name, role });
+      window.location.href = 'dashboard.html';
+    });
+  </script>
+</body>
+</html>
